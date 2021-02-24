@@ -10,7 +10,7 @@ import {
 import CustomLoginPage from './CustomLoginPage';
 
 const config = require("./FIREBASE_CONFIG.js").firebaseConfig;
-
+console.log(config)
 const options: RAFirebaseOptions = {
     logging: true,
     // rootRef: "root_collection/some_document",
