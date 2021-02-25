@@ -1,3 +1,7 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Rhodanthe1116/ntu-dorm-admin)
+
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Rhodanthe1116/ntu-dorm-admin)
+
 An example project for the [react-admin-firebase](https://github.com/benwinding/react-admin-firebase) package.
 
 # Get started

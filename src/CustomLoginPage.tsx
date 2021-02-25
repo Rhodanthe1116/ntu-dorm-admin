@@ -14,7 +14,7 @@ const uiConfig = {
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
   ]
 };
 
@@ -23,8 +23,8 @@ const SignInScreen = () => <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth=
 const CustomLoginForm = (props: any) => (
   <div>
     <div style={{fontFamily: "monospace", marginLeft: '15px'}}>
-      <p>Username: test@example.com</p>
-      <p>Password: password</p>
+      {/* <p>Username: test@example.com</p>
+      <p>Password: password</p> */}
     </div>
     <LoginForm {...props} />
     {/* <ForgotPasswordButton {...props} /> */}

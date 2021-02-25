@@ -1,5 +1,6 @@
 import * as React from "react";
 import { PostList, PostShow, PostCreate, PostEdit } from "./posts";
+import { UserList, UserShow, UserCreate, UserEdit } from "./users";
 import { ActivityList, ActivityShow, ActivityCreate, ActivityEdit } from "./activities";
 import { Admin, Resource } from "react-admin";
 import {
@@ -29,6 +30,9 @@ class App extends React.Component {
                 <Resource
                     name="activities"
                     list={ActivityList} show={ActivityShow} create={ActivityCreate} edit={ActivityEdit} />
+                <Resource
+                    name="users"
+                    list={UserList} show={UserShow} create={UserCreate} edit={UserEdit} />
                 <Resource
                     name="posts"
                     list={PostList} show={PostShow} create={PostCreate} edit={PostEdit} />
