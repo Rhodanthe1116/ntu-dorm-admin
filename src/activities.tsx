@@ -36,6 +36,7 @@ import {
     SelectArrayInput,
     useGetList,
     Loading,
+    CloneButton,
 } from "react-admin";
 import RichTextInput from "ra-input-rich-text";
 import { NumberInput } from "react-admin";
@@ -49,7 +50,7 @@ import PizZip from "pizzip";
 // @ts-ignore
 import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
-import  zhTW  from 'date-fns/locale/zh-TW'
+import zhTW from 'date-fns/locale/zh-TW'
 
 function loadFile(url: any, callback: any) {
     PizZipUtils.getBinaryContent(url, callback);
@@ -90,7 +91,7 @@ export const ActivityList = (props: any) => (
             <NumberField source="預算" />
             <TextField source="負責人" />
 
-            {/* <ShowButton label="" /> */}
+            <CloneButton label="" />
             <EditButton label="" />
             {/* <DeleteButton label="" /> */}
         </Datagrid>
@@ -226,12 +227,15 @@ export const ActivityEdit = (props: any) => {
                 <TextInput multiline source="目標" />
                 <TextInput source="參加對象" />
                 <TextInput source="主辦單位" />
-                <ArrayInput source="承辦人員們">
+
+                <TextInput multiline source="承辦人員們" />
+
+                {/* <ArrayInput source="承辦人員們">
                     <SimpleFormIterator>
                         <TextInput source="姓名" />
 
                     </SimpleFormIterator>
-                </ArrayInput>
+                </ArrayInput> */}
 
                 <TextInput multiline source="問卷.問卷們" />
                 <NumberField source="問卷.總數" />
@@ -302,16 +306,16 @@ const defaultActivity: Activity = {
     }
 }
 const GenerateDocxButtonField = ({ type = "proposal", record = defaultActivity }) => {
-    const users = useGetList(
-        'users',
-        { page: 1, perPage: 10 },
-    );
-    if (users.loading) { return <Loading />; }
-    if (users.error) { return <p>users ERROR</p>; }
+    // const users = useGetList(
+    //     'users',
+    //     { page: 1, perPage: 10 },
+    // );
+    // if (users.loading) { return <Loading />; }
+    // if (users.error) { return <p>users ERROR</p>; }
 
     function generateDocument() {
         const activity: Activity = record
-        console.log(users.data)
+        console.log(activity)
         loadFile(`./templates/${type}.docx`, function (
             error: any,
             content: any
@@ -320,11 +324,12 @@ const GenerateDocxButtonField = ({ type = "proposal", record = defaultActivity }
                 throw error;
             }
             var zip = new PizZip(content);
-            var doc = new Docxtemplater().loadZip(zip);
+            var doc = new Docxtemplater(zip, { linebreaks: true });
+
             doc.setData({
                 ...activity,
-                日期們: activity.日期們.map(cur => ({ 開始日期: format(cur.開始日期, "yyyy/MM/dd(eeeeee) HH:mm", {locale: zhTW}), 結束日期: format(cur.結束日期, "HH:mm") })),
-                承辦人員們: Object.values(users.data),
+                日期們: activity.日期們.map(cur => ({ 開始日期: format(cur.開始日期, "yyyy/MM/dd(eeeeee) HH:mm", { locale: zhTW }), 結束日期: format(cur.結束日期, "HH:mm") })),
+                // 承辦人員們: Object.values(users.data),
                 ...activity.問卷,
 
             });

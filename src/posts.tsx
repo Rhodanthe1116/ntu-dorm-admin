@@ -57,7 +57,7 @@ export const PostCreate = (props: any) => (
     <SimpleForm>
       <TextInput source="title" />
       <RichTextInput source="body" />
-      <FileInput source="file" label="File" accept="application/pdf">
+      <FileInput source="file" label="File" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document">
         <FileField source="src" title="title" />
       </FileInput>
     </SimpleForm>
@@ -78,7 +78,7 @@ export const PostEdit = (props: any) => (
           { id: 3, name: "Bad" }
         ]}
       />
-      <FileInput source="file" label="File" accept="application/pdf">
+      <FileInput source="file" label="File" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document">
         <FileField source="src" title="title" />
       </FileInput>
     </SimpleForm>
